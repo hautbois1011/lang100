@@ -19,6 +19,17 @@ pub fn alternate_str(s1: &str, s2: &str) -> String {
     ret
 }
 
+/// 文字列を単語に分け、文字数を単語毎に格納したベクトルを返します。
+pub fn list_of_len_of_words(s: &str) -> Vec<usize> {
+    s.chars()
+        .filter(|&c| c != '.')
+        .filter(|&c| c != ',')
+        .collect::<String>()
+        .split_whitespace()
+        .map(|word| word.len())
+        .collect::<Vec<usize>>()
+}
+
 #[cfg(test)]
 mod chap1_tests {
     use super::*;
@@ -36,6 +47,12 @@ mod chap1_tests {
     #[test]
     fn alternate_str_test() {
         assert_eq!("パタトクカシーー".to_string(), alternate_str("パトカー", "タクシー"))
+    }
+
+    #[test]
+    fn list_of_len_of_words_test() {
+        let text = "Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics.";
+        println!("{:?}", list_of_len_of_words(&text));
     }
 
 }
