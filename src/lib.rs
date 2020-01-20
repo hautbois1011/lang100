@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 /// 文字列の逆順を返します。
 pub fn reverse_str(s: &str) -> String {
     s.chars().rev().collect()
@@ -30,6 +32,19 @@ pub fn list_of_len_of_words(s: &str) -> Vec<usize> {
         .collect::<Vec<usize>>()
 }
 
+/// 文字列を単語に分け、vに対応した文字数だけの頭文字のハッシュを返します。
+pub fn hash_of_elements(s: &str, v: &Vec<usize>)
+    -> HashMap<String, usize> {
+
+    let mut ret = HashMap::new();
+    let it = s.split_whitespace().zip(v.iter());
+    it.enumerate().for_each(|(index, (word, &i))| {
+        ret.insert(word[..i].to_string(), index + 1);
+    });
+
+    ret
+}
+
 #[cfg(test)]
 mod chap1_tests {
     use super::*;
@@ -54,5 +69,13 @@ mod chap1_tests {
         let text = "Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics.";
         println!("{:?}", list_of_len_of_words(&text));
     }
+
+    #[test]
+    fn hash_of_elements_test() {
+        let text = "Hi He Lied Because Boron Could Not Oxidize Fluorine. New Nations Might Also Sign Peace Security Clause. Arthur King Can.";
+        let v = vec![1, 2, 2, 2, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 1, 1, 2, 2, 1, 2];
+
+        println!("{:?}", hash_of_elements(&text, &v));
+    } 
 
 }
