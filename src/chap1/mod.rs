@@ -81,3 +81,13 @@ pub fn template<X, Y, Z>(x: X, y: Y, z:Z) -> String
 
     format!("{}時の{}は{}", x, y, z)
 }
+
+pub fn encryption(s: &str) -> String {
+    s.chars().map(|c|
+        if c.is_ascii_lowercase() {
+            (219 - c as u8) as char
+        } else {
+            c
+        }
+    ).collect()
+}

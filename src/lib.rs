@@ -63,7 +63,15 @@ mod chap1_tests {
     }
 
     #[test]
+    #[ignore]
     fn template_test() {
         assert_eq!("12時の気温は22.4".to_string(), chap1::template(12, "気温", 22.4));
+    }
+
+    #[test]
+    fn encryption_test() {
+        let text = "Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics.";
+        println!("{:?}", chap1::encryption(&text));
+        assert_eq!(text.to_string(), chap1::encryption(&chap1::encryption(&text)));
     }
 }
