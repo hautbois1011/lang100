@@ -62,4 +62,8 @@ mod chap1_tests {
         println!("is 'se' in b: {:?}", b.contains(&"se".to_string()));
     }
 
+    #[test]
+    fn template_test() {
+        assert_eq!("12時の気温は22.4".to_string(), chap1::template(12, "気温", 22.4));
+    }
 }

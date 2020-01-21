@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::fmt::Display;
 
 /// 文字列の逆順を返します。
 pub fn reverse_str(s: &str) -> String {
@@ -45,6 +46,7 @@ pub fn hash_of_elements(s: &str, v: &Vec<usize>)
     ret
 }
 
+/// 文字のn-gramを作ります。
 pub fn char_n_gram(s: &str, n: usize) -> Vec<String> {
     let l = s.len() - n + 1;
     let mut ret = Vec::new();
@@ -55,6 +57,7 @@ pub fn char_n_gram(s: &str, n: usize) -> Vec<String> {
     ret
 }
 
+/// 単語のn-gramを作ります。
 pub fn word_n_gram(s: &str, n: usize)
     -> Vec<Vec<String>> {
 
@@ -70,4 +73,11 @@ pub fn word_n_gram(s: &str, n: usize)
     }
 
     ret
+}
+
+/// テンプレート文を生成します。
+pub fn template<X, Y, Z>(x: X, y: Y, z:Z) -> String
+    where X: Display, Y: Display, Z: Display {
+
+    format!("{}時の{}は{}", x, y, z)
 }
