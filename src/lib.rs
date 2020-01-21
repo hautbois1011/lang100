@@ -69,9 +69,17 @@ mod chap1_tests {
     }
 
     #[test]
+    #[ignore]
     fn encryption_test() {
         let text = "Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics.";
         println!("{:?}", chap1::encryption(&text));
         assert_eq!(text.to_string(), chap1::encryption(&chap1::encryption(&text)));
+    }
+
+    #[test]
+    fn typologycemia_test() {
+        let text = "I couldn't believe that I could actually understand what I was reading : the phenomenal power of the human mind .";
+
+        println!("{:?}", chap1::typologycemia(&text));
     }
 }

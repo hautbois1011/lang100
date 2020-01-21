@@ -1,5 +1,6 @@
 use std::collections::HashMap;
 use std::fmt::Display;
+use rand::seq::SliceRandom;
 
 /// 文字列の逆順を返します。
 pub fn reverse_str(s: &str) -> String {
@@ -82,6 +83,7 @@ pub fn template<X, Y, Z>(x: X, y: Y, z:Z) -> String
     format!("{}時の{}は{}", x, y, z)
 }
 
+/// 文字列を暗号化します。
 pub fn encryption(s: &str) -> String {
     s.chars().map(|c|
         if c.is_ascii_lowercase() {
@@ -90,4 +92,23 @@ pub fn encryption(s: &str) -> String {
             c
         }
     ).collect()
+}
+
+/// 5文字以上の単語を最初と最後の文字を除いてシャッフルします。
+pub fn typologycemia(s: &str) -> String {
+    let mut rng = rand::thread_rng();
+    s.split_whitespace().map(|word| {
+        let len = word.len();
+        if len > 4 {
+            let mut bytes = word[1..(len-1)].to_string().into_bytes();
+            bytes.shuffle(&mut rng);
+
+            vec![word.chars().nth(0).unwrap().to_string(),
+                String::from_utf8(bytes).unwrap(),
+                word.chars().nth(len-1).unwrap().to_string()]
+                    .join("")
+        } else {
+            word.to_string()
+        }
+    }).collect::<Vec<_>>().join(" ")
 }
