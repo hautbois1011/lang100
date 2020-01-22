@@ -1,4 +1,5 @@
 pub mod chap1;
+pub mod chap2;
 
 #[cfg(test)]
 mod chap1_tests {
@@ -77,9 +78,20 @@ mod chap1_tests {
     }
 
     #[test]
+    #[ignore]
     fn typologycemia_test() {
         let text = "I couldn't believe that I could actually understand what I was reading : the phenomenal power of the human mind .";
 
         println!("{:?}", chap1::typologycemia(&text));
+    }
+}
+
+#[cfg(test)]
+mod chap2_tests {
+    use super::*;
+
+    #[test]
+    fn count_lines_test() {
+        println!("{:?}", chap2::count_lines());
     }
 }

@@ -77,7 +77,7 @@ pub fn word_n_gram(s: &str, n: usize)
 }
 
 /// テンプレート文を生成します。
-pub fn template<X, Y, Z>(x: X, y: Y, z:Z) -> String
+pub fn template<X, Y, Z>(x: X, y: Y, z: Z) -> String
     where X: Display, Y: Display, Z: Display {
 
     format!("{}時の{}は{}", x, y, z)
