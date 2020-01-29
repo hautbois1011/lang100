@@ -89,9 +89,15 @@ mod chap1_tests {
 #[cfg(test)]
 mod chap2_tests {
     use super::*;
+    use std::path::Path;
 
     #[test]
     fn count_lines_test() {
-        println!("{:?}", chap2::count_lines());
+        println!("{:?}", chap2::count_lines(Path::new("src/chap2/hightemp.txt")));
+    }
+
+    #[test]
+    fn tab_to_space() {
+        println!("{:?}", chap2::tab_to_space(Path::new("src/chap2/hightemp.txt")));
     }
 }
